@@ -24,4 +24,5 @@ public enum TaskRepeatability {
     public String toString() {
         return "Тип повторяемости" + name;
     }
+
 }

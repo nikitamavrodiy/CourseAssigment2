@@ -18,4 +18,6 @@ public enum TaskType {
     public String toString() {
         return "Тип задачи: " + name;
     }
+
+
 }
