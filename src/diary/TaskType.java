@@ -1,4 +1,4 @@
-package Diary;
+package diary;
 
 public enum TaskType {
     PERSONAL_TASK("Личная задача"),

@@ -1,6 +1,6 @@
-import Diary.Task;
-import Diary.TaskRepeatability;
-import Diary.TaskType;
+import diary.Task;
+import diary.TaskRepeatability;
+import diary.TaskType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -121,7 +121,7 @@ public class DiaryService {
         for (Map.Entry<Integer,Task> entry : diary.entrySet()) {
             if (entry.getValue().getTaskDateTime().toLocalDate().equals(inputDate)) {
                 System.out.println("_ID=" + entry.getKey() + " " + entry.getValue().getTaskName());
-            } else if (entry.getValue().getRepeatDateTime().equals(inputDate)) {
+            } else if (entry.getValue().appearsIn(inputDate)) {
                 System.out.println("_ID=" + entry.getKey() + " " + entry.getValue().getTaskName());
             }
         }
