@@ -1,4 +1,4 @@
-package Diary;
+package diary;
 
 public enum TaskType {
     PERSONAL_TASK("Личная задача"),
@@ -18,4 +18,6 @@ public enum TaskType {
     public String toString() {
         return "Тип задачи: " + name;
     }
+
+
 }

@@ -1,4 +1,4 @@
-package Diary;
+package diary;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,16 +28,28 @@ public class Task {
         return taskDateTime;
     }
 
-    public LocalDate getRepeatDateTime() {
-        LocalDate repeatDateTime = taskDateTime.toLocalDate();
+    public boolean appearsIn(LocalDate localDate) {
+        boolean isAppears;
         switch (taskRepeatability) {
-            case DAILY -> repeatDateTime.plusDays(1);
-            case WEEKLY -> repeatDateTime.plusWeeks(1);
-            case MONTHLY -> repeatDateTime.plusMonths(1);
-            case ANNUAL -> repeatDateTime.plusYears(1);
-            default -> repeatDateTime = taskDateTime.toLocalDate();
+            case DAILY ->
+                    isAppears = taskDateTime.toLocalDate().equals(localDate)
+                            || taskDateTime.toLocalDate().isBefore(localDate);
+            case WEEKLY ->
+                    isAppears = taskDateTime.toLocalDate().equals(localDate)
+                            || (taskDateTime.toLocalDate().isBefore(localDate)
+                            && localDate.getDayOfWeek().equals(taskDateTime.getDayOfWeek()));
+            case MONTHLY ->
+                    isAppears =  taskDateTime.toLocalDate().equals(localDate)
+                            || (taskDateTime.toLocalDate().isBefore(localDate)
+                            && localDate.getDayOfMonth() == taskDateTime.getDayOfMonth());
+
+            case ANNUAL ->
+                    isAppears = taskDateTime.toLocalDate().isBefore(localDate)
+                            && localDate.getDayOfMonth() == taskDateTime.getDayOfMonth()
+                            && localDate.getMonth() == taskDateTime.getMonth();
+            default -> isAppears =  taskDateTime.toLocalDate().equals(localDate);
         }
-        return repeatDateTime;
+        return isAppears;
     }
 
     private String checkField(String field) {
@@ -98,4 +110,5 @@ public class Task {
     public String toString() {
         return taskName;
     }
+
 }

@@ -1,7 +1,4 @@
-package Diary;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+package diary;
 
 public enum TaskRepeatability {
     ONE_TIME("однократная"),
@@ -24,4 +21,5 @@ public enum TaskRepeatability {
     public String toString() {
         return "Тип повторяемости" + name;
     }
+
 }
